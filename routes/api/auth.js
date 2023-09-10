@@ -7,6 +7,8 @@ const {
   logOut,
   updateSubscription,
   updateAvatar,
+  verificate,
+  resendVerificateToken,
 } = require("../../api/contacts/auth");
 
 const { schemas } = require("../../models/user");
@@ -19,5 +21,7 @@ router.post("/register", validationBody(schemas.registerSchema), register);
 router.post("/login", validationBody(schemas.loginSchema), login);
 router.post("/logout", authenticate, logOut);
 router.get("/current", authenticate, currentUser);
+router.get("/verify/:verificationToken", verificate);
+router.post("/verify", resendVerificateToken);
 
 module.exports = router;
